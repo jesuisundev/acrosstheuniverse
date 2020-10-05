@@ -1,0 +1,449 @@
+/**
+The first initial static CSS stars background effect is a copy/pasta 
+from Anastasia Goodwin ! https://codepen.io/agoodwin/pen/NMJoER
+see her work: https://anastasiagoodwin.com/
+**/
+
+@keyframes move-background {
+    from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to {
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+@-webkit-keyframes move-background {
+    from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to {
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+@-moz-keyframes move-background {
+    from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to {
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+@-webkit-keyframes move-background {
+    from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to {
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.stars {
+    background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    z-index: 0;
+}
+
+.twinkling {
+    width: 10000px;
+    height: 100%;
+    background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
+    background-size: 1000px 1000px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    -moz-animation: move-background 70s linear infinite;
+    -ms-animation: move-background 70s linear infinite;
+    -o-animation: move-background 70s linear infinite;
+    -webkit-animation: move-background 70s linear infinite;
+    animation: move-background 70s linear infinite;
+}
+
+
+/**
+Main CSS Across the universe
+**/
+
+body {
+    margin: 0;
+    background: black;
+}
+
+canvas {
+    z-index: 100;
+    display: block;
+    position: relative;
+    -webkit-transition: opacity 10s;
+    -moz-transition: opacity 10s;
+    -o-transition: opacity 10s;
+    transition: opacity 10s;
+}
+
+#intro,
+#outro {
+    z-index: 101;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    -webkit-transition: opacity 5s;
+    -moz-transition: opacity 5s;
+    -o-transition: opacity 5s;
+    transition: opacity 5s;
+}
+
+#intro {
+    -webkit-transition: opacity 4s;
+    -moz-transition: opacity 4s;
+    -o-transition: opacity 4s;
+    transition: opacity 4s;
+}
+
+#title,
+#launch,
+#notice,
+#entrypoint,
+#intro #description,
+.background-container {
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+}
+
+#outro {
+    font-family: Roboto;
+    visibility: hidden;
+}
+
+#outro ul {
+    width: 368px;
+    margin: auto;
+}
+
+#outro li {
+    float: left;
+    padding: 0 5px;
+    list-style-type: none;
+}
+
+#outro h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 44px;
+}
+
+#outro h2 {
+    margin-bottom: 15px;
+    margin-top: 5px;
+    font-weight: lighter;
+    font-size: 24px;
+}
+
+#outro div.description {
+    margin-top: 35px;
+}
+
+#outro h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+#outro h4 {
+    margin: 0;
+}
+
+#outro h4 a {
+    color: white;
+    font-weight: normal;
+}
+
+#outro h4 a:hover {
+    text-decoration: none;
+}
+
+#story {
+    z-index: 102;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#story p {
+    position: relative;
+    text-align: center;
+}
+
+#callToAction {
+    z-index: 9999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-family: Roboto;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 80px;
+    height: 80px;
+    outline: none;
+    line-height: 80px;
+    -webkit-transition: opacity 5s;
+    -moz-transition: opacity 5s;
+    transition: opacity 5s;
+    display: none;
+}
+
+.blink_cta {
+    animation: blink_cta 2s linear infinite;
+}
+
+@keyframes blink_cta {
+    50% {
+        opacity: 0;
+    }
+}
+
+#firstStory,
+#secondStory,
+#thirdStory,
+#fourthStory {
+    -webkit-transition: opacity 5s;
+    -moz-transition: opacity 5s;
+    -o-transition: opacity 5s;
+    transition: opacity 5s;
+    position: fixed;
+    top: 0;
+    font-family: Roboto;
+    font-size: 20px;
+}
+
+.fadeIn {
+    opacity: 1;
+}
+
+.fadeOut {
+    opacity: 0;
+}
+
+.centered {
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 100px;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-family: Roboto, Times New Roman;
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+hr {
+    width: 190px;
+    margin: 50px auto 25px auto;
+    border: 1px dashed white;
+}
+
+#intro #description {
+    font-family: Roboto, Times New Roman;
+    font-size: 15px;
+}
+
+#intro .sound {
+    font-size: 35px;
+}
+
+#intro #launch {
+    font-size: 50px;
+    background-color: #32197A;
+    font-family: Roboto;
+    padding: 25px 45px;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    border-radius: 15px;
+    letter-spacing: 5px;
+    transition: background-color 1s ease;
+}
+
+#intro #launch:hover {
+    background: #0E2B50;
+}
+
+#intro .soundOn {
+    width: 150px;
+}
+
+#sound {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.dashed-circle {
+    position: relative;
+    margin: 20px;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}
+
+.dashed-circle:before {
+    position: absolute;
+    content: '';
+    height: calc(100% + 10px);
+    width: calc(100% + 10px);
+    border: 2px dashed white;
+    top: 7px;
+    left: -13px;
+    border-radius: inherit;
+    animation: spin 10s linear infinite;
+}
+
+.circle {
+    position: relative;
+    margin: 20px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.circle:before {
+    position: absolute;
+    content: '';
+    height: calc(100% + 10px);
+    width: calc(100% + 10px);
+    border: 2px solid white;
+    top: 16px;
+    left: -23px;
+    border-radius: inherit;
+}
+
+#headphone {
+    position: absolute;
+    top: 32px;
+    left: 8px;
+}
+
+#turnup {
+    font-family: Roboto;
+    margin-bottom: 50px;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+#whitewall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    visibility: hidden;
+    z-index: -1;
+    -webkit-transition: opacity 5s;
+    -moz-transition: opacity 5s;
+    -o-transition: opacity 5s;
+    transition: opacity 5s;
+}
+
+.bwp-single-post-share {
+    border-top: 1px solid #eeefef;
+    border-top-color: #2e3034;
+    padding-top: 20px;
+    width: 100%;
+    margin: 25px 0;
+    float: left;
+    text-align: left;
+    display: inline-block;
+    min-height: 1px;
+}
+
+.bwp-single-post-share-list {
+    margin: 0;
+    display: inline-block;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.bwp-single-post-share-list li {
+    display: inline-block;
+    margin-left: 2px;
+}
+
+.bwp-single-post-share-list .bwp-twitter-share {
+    background-color: #43b1ff;
+}
+
+.bwp-single-post-share-list .bwp-facebook-share {
+    background-color: #7b9be0;
+}
+
+.bwp-single-post-share-list .bwp-messenger-share {
+    background-color: #0e76a8;
+}
+
+.bwp-single-post-share-list .bwp-whatapp-share {
+    background-color: #44c654;
+}
+
+.bwp-single-post-share-list .bwp-linkedin-share {
+    background-color: #0e76a8;
+}
+
+.bwp-single-post-share-list .bwp-reddit-share {
+    background-color: #fe5f40;
+}
+
+.bwp-single-post-share-list li a {
+    display: inline-block;
+    width: 49px;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 50%;
+}

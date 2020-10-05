@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Across The Universe - A three minute web experience across the universe</title>
+    <meta name="description" content="A three minute web experience across the universe.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Across The Universe">
+    <meta property="og:description" content="A three minute web experience across the universe.">
+    <meta property="og:url" content="https://www.across-universe.com/">
+    <meta property="og:site_name" content="Across The Universe">
+    <meta property="og:image" content="https://s3.eu-west-3.amazonaws.com/www.across-universe.com/misc/preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Across The Universe">
+    <meta name="twitter:description" content="A three minute web experience across the universe.">
+    <meta name="twitter:image" content="https://s3.eu-west-3.amazonaws.com/www.across-universe.com/misc/preview.jpg">
+    <meta name="twitter:creator" content="@jesuisundev">
+    <meta name="author" content="Mehdi ZOGHLAMI">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js" integrity="sha512-kgjZw3xjgSUDy9lTU085y+UCVPz3lhxAtdOVkcO4O2dKl2VSBcNsQ9uMg/sXIM4SoOmCiYfyFO/n1/3GSXZtSg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.0/tween.umd.min.js" integrity="sha512-ui96zvM/vF8mtsCm5k/qk8ZiIzj8wJIFGw5CSFVX343tBpRTVFX1YVw3/3FFxT7vZzqKBHdgzge/F0kgbMBDww==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js" integrity="sha512-ALoawPS0JxHQ+8dGL7htZIlVNRaE/SN9gHD4G8pJJTi9H4BQ/3PjdvhggSGR34g00mvTPFkxQuveQUsJA5664Q==" crossorigin="anonymous"></script>
+    <script src="libs/postprocessing.min.js"></script>
+    <script type="module" src="libs/app.js"></script>
+</head>
+
+<body id="global">
+    <div id="intro">
+        <div id="title" class="fadeOut">
+            <h1 style="display: none;">Across the universe</h1>
+            <img id="logo" src="images/logo.svg" alt="Across the universe" />
+        </div>
+        <div id="description" class="fadeOut">
+            <hr />
+            <h2>A three minute web experience across the universe</h2>
+            This experience uses only Javascript, HTML and CSS rendered in real time.
+            <br />Press <strong>F11</strong> to go fullscreen for a better experience.
+        </div>
+        <div id="notice" class="fadeOut">
+            <div id="sound">
+                <div class="dashed-circle">
+                    <div class="circle">
+                        <img id="headphone" src="images/headphone.svg" alt="headphone" />
+                    </div>
+                </div>
+            </div>
+            <p id="turnup">
+                <strong>Turn up sound</strong> <br />before launch
+            </p>
+        </div>
+        <div id="entrypoint" class="fadeOut">
+            <img id="loading" src="https://i.stack.imgur.com/qq8AE.gif" width="32" />
+            <br />
+            <a id="launch" href="" class="fadeOut">
+                LAUNCH EXPERIENCE
+            </a>
+        </div>
+    </div>
+
+    <div id="story">
+        <p id="firstStory" class="fadeOut">
+            A wormhole is a speculative structure linking disparate points in spacetime
+        </p>
+        <p id="secondStory" style="top: -33px;" class="fadeOut">
+            If wormholes are real, they could connect a billion light years distance or more
+        </p>
+        <p id="thirdStory" style="top: -68px;" class="fadeOut">
+            They could bend space and time across the universe
+        </p>
+        <p id="fourthStory" class="fadeOut">
+            Some theories suggest that wormholes lead to parallel universes
+        </p>
+    </div>
+
+    <a id="callToAction" class="blink_cta" href="">
+        CLICK
+    </a>
+
+    <div id="base-space" class="background-container">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+    </div>
+
+    <div id="outro" class="fadeOut">
+        <img id="logo" src="images/logo.svg" alt="Across the universe" />
+        <hr />
+        <div class="title">
+            <h1>End of chapter 1</h1>
+            <h2>Explore parallel universe in chapter 2 very soon!</h2>
+        </div>
+        <div class="description">
+            <h3>
+                Share the experience
+            </h3>
+            <ul class="bwp-single-post-share-list list-unstyled">
+                <li>
+                    <a href="https://twitter.com/share?url=https://s3.eu-west-3.amazonaws.com/www.across-universe.com/index.html&amp;text=Across The Universe - A three minute web experience across the universe" rel="nofollow noopener" target="_blank" class="bwp-twitter-share"
+                        onclick="window.open('https://twitter.com/share?url=https://s3.eu-west-3.amazonaws.com/www.across-universe.com/index.html&amp;text=Across The Universe - A three minute web experience across the universe', 'Twitter', 'width=700,height=500,left='+(screen.availWidth/2-350)+',top='+(screen.availHeight/2-250)+''); return false;">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/sharer.php?u=https://www.across-universe.com/&amp;t=Across%20The%20Universe%20-%20A%20three%20minute%20web%20experience%20across%20the%20universe" rel="nofollow noopener" target="_blank" class="bwp-facebook-share" onclick="window.open('https://www.facebook.com/sharer.php?u=https://www.across-universe.com/&amp;t=Across%20The%20Universe%20-%20A%20three%20minute%20web%20experience%20across%20the%20universe', 'Facebook', 'width=700,height=500,left='+(screen.availWidth/2-350)+',top='+(screen.availHeight/2-250)+''); return false;">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/dialog/send?link=https://www.across-universe.com/&amp;app_id=844511858946898&amp;redirect_uri=https://www.across-universe.com/" rel="nofollow noopener" target="_blank" class="bwp-messenger-share" onclick="window.open('https://www.facebook.com/dialog/send?link=https://www.across-universe.com/&amp;app_id=844511858946898&amp;redirect_uri=https://www.across-universe.com/', 'Whatapp', 'width=800,height=700,left='+(screen.availWidth/2-400)+',top='+(screen.availHeight/2-350)+''); return false;">
+                        <i class="fab fa-facebook-messenger"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wa.me/?text=https://www.across-universe.com/" rel="nofollow noopener" target="_blank" class="bwp-whatapp-share" onclick="window.open('https://wa.me/?text=https://www.across-universe.com/', 'Whatapp', 'width=800,height=700,left='+(screen.availWidth/2-400)+',top='+(screen.availHeight/2-350)+''); return false;">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.across-universe.com/" rel="nofollow noopener" target="_blank" class="bwp-linkedin-share" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https://www.across-universe.com/&amp;media=true', 'Linkedin', 'width=800,height=700,left='+(screen.availWidth/2-400)+',top='+(screen.availHeight/2-350)+''); return false;">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.reddit.com/submit?url=https://www.across-universe.com/&amp;title=Across%20The%20Universe%20-%20A%20three%20minute%20web%20experience%20across%20the%20universe" rel="nofollow noopener" target="_blank" class="bwp-reddit-share" onclick="window.open('https://www.reddit.com/submit?url=https://www.across-universe.com/&amp;title=Across%20The%20Universe%20-%20A%20three%20minute%20web%20experience%20across%20the%20universe', 'Reddit', 'width=800,height=700,left='+(screen.availWidth/2-400)+',top='+(screen.availHeight/2-350)+''); return false;">
+                        <i class="fab fa-reddit-alien"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <br style="clear: both;" />
+        <br />
+        <br/>
+        <h4>
+            Creative Developer : <a href="https://twitter.com/jesuisundev">Mehdi ZOGHLAMI</a>
+        </h4>
+        <h4>
+            UI/UX : <a href="https://www.linkedin.com/in/arnaudfriedel/">Arnaud FRIEDEL</a>
+        </h4>
+        <br />
+        <h4>
+            Music: <a href="https://www.melodysheep.com/">Melodysheep</a> under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons</a> license : <a href="https://melodysheep.bandcamp.com/album/the-arrow-of-time-soundtrack-to-timelapse-of-the-future">buy album</a>
+        </h4>
+    </div>
+
+    <div id="whitewall"></div>
+</body>
+
+</html>
