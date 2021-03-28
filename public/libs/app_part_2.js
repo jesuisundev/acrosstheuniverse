@@ -33,7 +33,7 @@ init()
  * Handle preload of assets and show launch call to action
  */
 async function init() {
-    initAudio()
+    //initAudio()
     window.onload = () => {
         //document.getElementById('loading').remove()
         //document.getElementById('launch').className = 'fadeIn'
@@ -451,8 +451,13 @@ const darkCylinderMaterial = new THREE.MeshLambertMaterial({
 })
 const darkCylinder = new THREE.Mesh(commonCylinderGeometry, darkCylinderMaterial)
 
-// colourfull space full of nebulas - main universe cylinder
-const colorFullCylinderTexture = new THREE.TextureLoader().load('/images/colorfull.jpg')
+const video = document.getElementById('video')
+video.src = "../videos/auroreBorealEffect.mp4"
+video.load()
+
+const colorFullCylinderTexture = new THREE.VideoTexture(video)
+    // colourfull space full of nebulas - main universe cylinder
+    //const colorFullCylinderTexture = new THREE.TextureLoader().load('/images/wholeUniverseToCut.jpg')
 colorFullCylinderTexture.wrapS = THREE.RepeatWrapping
 colorFullCylinderTexture.wrapT = THREE.MirroredRepeatWrapping
 colorFullCylinderTexture.repeat.set(1, 1)
