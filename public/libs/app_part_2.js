@@ -19,7 +19,7 @@ renderer.domElement.id = 'wormhole'
 
 document.body.appendChild(renderer.domElement)
 
-const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000)
+const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 10000)
 camera.position.x = 0
 camera.position.y = 10
 camera.position.z = 0
@@ -27,25 +27,24 @@ camera.lookAt(0, 0, 0)
 
 const starField = []
 const starTexture = new THREE.TextureLoader().load('../images/star.png')
+const starShineTexture = new THREE.TextureLoader().load('../images/star-shine.png')
 
-let starsMaterial, starsGeometry, stars
-let starCount = 50000
+
 let mouseX = 0,
     mouseY = 0
 let windowHalfX = window.innerWidth / 2
 let windowHalfY = window.innerHeight / 2
 
-
-function getStarsGeometry() {
+function getStarsGeometry(max = 5000) {
     const geometry = new THREE.BufferGeometry()
 
-    return geometry.setAttribute('position', new THREE.Float32BufferAttribute(getVerticesInRandomPosition(), 3))
+    return geometry.setAttribute('position', new THREE.Float32BufferAttribute(getVerticesInRandomPosition(max), 3))
 }
 
-function getVerticesInRandomPosition() {
+function getVerticesInRandomPosition(max) {
     const vertices = []
 
-    for (let i = 0; i < starCount; i++) {
+    for (let i = 0; i < max; i++) {
         const x = 2000 * Math.random() - 1000;
         const y = 2000 * Math.random() - 1000;
         const z = 2000 * Math.random() - 1000;
@@ -56,22 +55,23 @@ function getVerticesInRandomPosition() {
     return vertices
 }
 
-function getStarsMaterial() {
+function getStarsMaterial(texture, opacity = 1, size = 5) {
     return new THREE.PointsMaterial({
-        size: 5,
+        size: size,
         sizeAttenuation: true,
-        map: starTexture,
-        transparent: true
+        map: texture,
+        transparent: true,
+        opacity: opacity
     })
 }
 
-starsGeometry = getStarsGeometry()
-starsMaterial = getStarsMaterial()
+const brightStars = new THREE.Points(getStarsGeometry(20000), getStarsMaterial(starShineTexture, 1))
+const mediumStars = new THREE.Points(getStarsGeometry(10000), getStarsMaterial(starTexture, 0.6))
+const paleStars = new THREE.Points(getStarsGeometry(10000), getStarsMaterial(starTexture, 0.2))
 
-stars = new THREE.Points(starsGeometry, starsMaterial)
-console.log(stars)
-scene.add(stars)
-
+scene.add(brightStars)
+scene.add(mediumStars)
+scene.add(paleStars)
 
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
@@ -92,11 +92,17 @@ function animate(time) {
     if (needRender) {
         renderer.render(scene, camera)
     }
+    camera.position.y -= 0.05
 
-    camera.position.x += (mouseX - camera.position.x) * 0.05
-    camera.position.y += (-mouseY - camera.position.y) * 0.05
+    rotateUniverse()
 
     requestAnimationFrame(animate)
+}
+
+function rotateUniverse(force = 0.0003) {
+    brightStars.rotation.y += force
+    mediumStars.rotation.y += force
+    paleStars.rotation.y += force
 }
 
 animate()
