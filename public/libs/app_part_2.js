@@ -70,7 +70,22 @@ scene.add(mediumStars)
 scene.add(paleStars)
 
 const bloomEffect = new POSTPROCESSING.BloomEffect({ blendFunction: POSTPROCESSING.BlendFunction.SCREEN, kernelSize: POSTPROCESSING.KernelSize.SMALL })
-bloomEffect.blendMode.opacity.value = 4
+bloomEffect.blendMode.opacity.value = 2
+
+const godRaysEffectOptions = {
+        height: 480,
+        blendFunction: POSTPROCESSING.BlendFunction.SCREEN,
+        color: 0x000000,
+        kernelSize: POSTPROCESSING.KernelSize.SMALL,
+        density: 1,
+        decay: 0.1,
+        weight: 1,
+        exposure: 0.1,
+        samples: 60,
+        clampMax: 1.0
+    }
+    // TODO - Add on postprocessing to make the speed zoom effect
+const godRaysEffect = new POSTPROCESSING.GodRaysEffect(camera, brightStars, godRaysEffectOptions)
 
 // using a global variable because effects will be highly animated during the experience
 effectPass = new POSTPROCESSING.EffectPass(camera, bloomEffect)
