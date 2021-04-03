@@ -29,11 +29,7 @@ const starField = []
 const starTexture = new THREE.TextureLoader().load('../images/star.png')
 const starShineTexture = new THREE.TextureLoader().load('../images/star-shine.png')
 
-
-let mouseX = 0,
-    mouseY = 0
-let windowHalfX = window.innerWidth / 2
-let windowHalfY = window.innerHeight / 2
+let effectPass
 
 function getStarsGeometry(max = 5000) {
     const geometry = new THREE.BufferGeometry()
@@ -66,12 +62,23 @@ function getStarsMaterial(texture, opacity = 1, size = 5) {
 }
 
 const brightStars = new THREE.Points(getStarsGeometry(20000), getStarsMaterial(starShineTexture, 1))
-const mediumStars = new THREE.Points(getStarsGeometry(10000), getStarsMaterial(starTexture, 0.6))
+const mediumStars = new THREE.Points(getStarsGeometry(20000), getStarsMaterial(starTexture, 0.6))
 const paleStars = new THREE.Points(getStarsGeometry(10000), getStarsMaterial(starTexture, 0.2))
 
 scene.add(brightStars)
 scene.add(mediumStars)
 scene.add(paleStars)
+
+const bloomEffect = new POSTPROCESSING.BloomEffect({ blendFunction: POSTPROCESSING.BlendFunction.SCREEN, kernelSize: POSTPROCESSING.KernelSize.SMALL })
+bloomEffect.blendMode.opacity.value = 4
+
+// using a global variable because effects will be highly animated during the experience
+effectPass = new POSTPROCESSING.EffectPass(camera, bloomEffect)
+effectPass.renderToScreen = true
+
+const composer = new POSTPROCESSING.EffectComposer(renderer)
+composer.addPass(new POSTPROCESSING.RenderPass(scene, camera))
+composer.addPass(effectPass)
 
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
@@ -79,20 +86,17 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix()
 })
 
-document.body.addEventListener('pointermove', onPointerMove);
-
-function onPointerMove(event) {
-    if (event.isPrimary === false) return
-
-    mouseX = event.clientX - windowHalfX
-    mouseY = event.clientY - windowHalfY
-}
-
 function animate(time) {
     if (needRender) {
-        renderer.render(scene, camera)
+        //renderer.render(scene, camera)
+        composer.render()
     }
     camera.position.y -= 0.05
+
+    let current = Math.random()
+
+    if (current > 0.6 && current < 0.65)
+        mediumStars.material.opacity = current
 
     rotateUniverse()
 
