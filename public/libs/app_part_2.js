@@ -19,17 +19,25 @@ renderer.domElement.id = 'wormhole'
 
 document.body.appendChild(renderer.domElement)
 
-const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 10000)
+const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 10, 10000)
 camera.position.x = 0
 camera.position.y = 10
 camera.position.z = 0
 camera.lookAt(0, 0, 0)
 
+const controls = new THREE.PointerLockControls(camera, document.body)
+const velocity = new THREE.Vector3()
+const direction = new THREE.Vector3()
 const starField = []
 const starTexture = new THREE.TextureLoader().load('../images/star.png')
 const starShineTexture = new THREE.TextureLoader().load('../images/star-shine.png')
 
 let effectPass
+let moveForward = false
+let moveBackward = false
+let moveLeft = false
+let moveRight = false
+let prevTimePerf = performance.now()
 
 function getStarsGeometry(max = 5000) {
     const geometry = new THREE.BufferGeometry()
@@ -69,6 +77,54 @@ scene.add(brightStars)
 scene.add(mediumStars)
 scene.add(paleStars)
 
+scene.add(controls.getObject())
+
+const onKeyDown = event => {
+    switch (event.code) {
+        case 'ArrowUp':
+        case 'KeyW':
+            moveForward = true
+            break
+        case 'ArrowLeft':
+        case 'KeyA':
+            moveLeft = true
+            break
+        case 'ArrowDown':
+        case 'KeyS':
+            moveBackward = true
+            break
+        case 'ArrowRight':
+        case 'KeyD':
+            moveRight = true
+            break
+    }
+}
+
+const onKeyUp = event => {
+    switch (event.code) {
+        case 'ArrowUp':
+        case 'KeyW':
+            moveForward = false
+            break
+        case 'ArrowLeft':
+        case 'KeyA':
+            moveLeft = false
+            break
+        case 'ArrowDown':
+        case 'KeyS':
+            moveBackward = false
+            break
+        case 'ArrowRight':
+        case 'KeyD':
+            moveRight = false
+            break
+    }
+}
+
+document.addEventListener('keydown', onKeyDown)
+document.addEventListener('keyup', onKeyUp)
+document.addEventListener('click', () => controls.lock())
+
 const bloomEffect = new POSTPROCESSING.BloomEffect({ blendFunction: POSTPROCESSING.BlendFunction.SCREEN, kernelSize: POSTPROCESSING.KernelSize.SMALL })
 bloomEffect.blendMode.opacity.value = 2
 
@@ -103,9 +159,24 @@ window.addEventListener('resize', () => {
 
 function animate(time) {
     if (needRender) {
-        //renderer.render(scene, camera)
         composer.render()
     }
+
+    const timePerf = performance.now()
+    if (controls.isLocked === true) {
+        const delta = (timePerf - prevTimePerf) / 1000;
+
+        direction.z = Number(moveForward) - Number(moveBackward);
+        direction.x = Number(moveRight) - Number(moveLeft);
+
+        if (moveForward || moveBackward) velocity.z -= direction.z * 400.0 * delta;
+        if (moveLeft || moveRight) velocity.x -= direction.x * 400.0 * delta;
+
+        controls.moveRight(-velocity.x * delta);
+        controls.moveForward(-velocity.z * delta);
+    }
+    prevTimePerf = time;
+
     camera.position.y -= 0.05
 
     let current = Math.random()
